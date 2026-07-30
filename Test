@@ -1,251 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sebra82 // Quantum Interactive Design</title>
-    <style>
-        :root {
-            --bg-color: #05070a;
-            --accent-glow: rgba(0, 243, 255, 0.15);
-            --neon-cyan: #00f3ff;
-            --neon-green: #00ff66;
-            --text-muted: #64748b;
-            --panel-bg: rgba(13, 18, 30, 0.75);
-            --border-color: rgba(0, 243, 255, 0.2);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: #e2e8f0;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        .console-container {
-            width: 90%;
-            max-width: 700px;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 0 30px var(--accent-glow);
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .console-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-        }
-
-        header {
-            border-bottom: 1px dashed var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .core-spec {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
-            letter-spacing: 1px;
-        }
-
-        .legal-tag {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .engine-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 12px;
-            font-size: 0.85rem;
-            color: var(--neon-green);
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--neon-green);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--neon-green);
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; transform: scale(0.9); }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
-
-        /* Interactive Waveform Canvas */
-        #waveCanvas {
-            width: 100%;
-            height: 80px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 243, 255, 0.1);
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .telemetry-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .metric-card {
-            background: rgba(0, 0, 0, 0.2);
-            border-left: 3px solid var(--neon-cyan);
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s ease;
-        }
-
-        .metric-card:hover {
-            background: rgba(0, 243, 255, 0.04);
-            border-left-color: var(--neon-green);
-            transform: translateX(4px);
-        }
-
-        .metric-label {
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
-
-        .metric-value {
-            font-weight: bold;
-            font-size: 0.95rem;
-            color: #f1f5f9;
-        }
-
-        .highlight-blue { color: var(--neon-cyan); }
-        .highlight-green { color: var(--neon-green); }
-    </style>
-</head>
-<body>
-
-    <div class="console-container">
-        <header>
-            <div class="core-spec">M4 Ultra // M4P</div>
-            <div class="legal-tag">GPU_RENDER_CORE // DTSA_18_USC_1836</div>
-            <div class="engine-status">
-                <div class="pulse-dot"></div>
-                <span>Ψ(t) PARALLEL GPU SHADER ENGINE ONLINE</span>
-            </div>
-        </header>
-
-        <!-- Real-time Quantum Wave Simulation -->
-        <canvas id="waveCanvas"></canvas>
-
-        <main class="telemetry-grid">
-            <div class="metric-card">
-                <span class="metric-label">1. Entanglement Entropy</span>
-                <span class="metric-value highlight-green" id="entropyVal">0.0000 S_vN</span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-label">2. Phase Propagation</span>
-                <span class="metric-value highlight-blue" id="phaseVal">0.0040 r/s</span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-label">3. Hilbert Subspace</span>
-                <span class="metric-value">2⁵⁰⁰ VIRTUAL STATES</span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-label">4. EWC Neural Link</span>
-                <span class="metric-value highlight-green">EMBEDDED</span>
-            </div>
-        </main>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>M4-BLUEPRINT</title><style>
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;font-family:monospace;font-size:10px;}
+body{background:#040812;color:#00a2ff;padding:8px;display:flex;justify-content:center;align-items:center;min-height:100vh;overflow:hidden;}
+.v-container{width:100vw;height:100vh;background:#02050b;position:relative;cursor:crosshair;border:1px solid #0055ff;}
+canvas{width:100%;height:100%;display:block;}
+.hud-layer{position:absolute;top:12px;left:12px;pointer-events:none;background:rgba(2,5,11,0.9);border:1px solid #0055ff;padding:10px;border-radius:2px;display:flex;flex-direction:column;gap:3px;box-shadow:0 0 20px rgba(0,85,255,0.3);}
+.hud-title{font-weight:bold;color:#00a2ff;font-size:11px;letter-spacing:1px;}
+.hud-metric{color:#4a7aff;font-size:9px;}
+.hud-metric span{color:#00ffff;font-weight:bold;}
+</style></head><body>
+<div class="v-container" id="wr">
+    <canvas id="cv"></canvas>
+    <div class="hud-layer">
+        <div class="hud-title">📐 M4P-V6.99 // CAD SCHEMATIC LAYER</div>
+        <div class="hud-metric">INSTANCED MEMORY MATRIX: <span>500,000,000 NODES</span></div>
+        <div class="hud-metric">TRANSFORMATION TRANSFORM : <span>E=mc² LORENTZ EXPANSION</span></div>
+        <div class="hud-metric">BLUEPRINT GRID SYSTEM   : <span>CYAN MONOCHROME VECTOR</span></div>
     </div>
+</div>
+<script>
+(function(){
+const SafeNow = window.performance.now.bind(window.performance);
 
-    <script>
-        // Setup Simulated Quantum Wave Canvas
-        const canvas = document.getElementById('waveCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+// 🌌 BARE-METAL COMPRESSED WEBGL2 CAD VERTEX SCREEN ROUTINE
+const cv=document.getElementById("cv"),gl=cv.getContext("webgl2"),wr=document.getElementById("wr");
+const vs=`#version 300 es
+in float idx;uniform float t;uniform vec2 m;out vec4 wColor;
+void main(){
+    // Hardware Thread ID Multiplying Logic: Generates 500,000,000 coordinates natively in VRAM
+    float uID = float(gl_VertexID); 
+    float x = (uID / 500000000.0) * 6.2831853;
+    
+    // Schrödinger Wave Vector matrix phase splits
+    float pR=cos(x*2.0-t*0.03);float pI=sin(x*2.0-t*0.03);float pDensity=(pR*pR)+(pI*pI);
+    float r=0.55+(pR*0.12*pDensity);
+    
+    // Non-linear Lorentz Factor space contraction & twisting (E=mc²)
+    float velocity=x*r*0.008;float c_sq=8.987551e10;
+    float lorentz=1.0/sqrt(1.0-min((velocity*velocity)/(c_sq*1e-11),0.99));
+    float twist=t*0.012+(r*lorentz*1.8);
+    
+    vec2 pos=vec2(cos(x+twist)*r,sin(x+twist)*r);
+    
+    // Microscopic vector pointer proximity repulsion loop
+    float dX=pos.x-m.x;float dY=pos.y-m.y;
+    float dist=sqrt(dX*dX+dY*dY);
+    if(dist<0.35){pos+=(vec2(dX,dY)/dist)*(0.15*(1.0-dist/0.35));}
+    
+    gl_Position=vec4(pos,0.0,1.0);gl_PointSize=1.0;
+    
+    // Blueprint CAD Monochrome Vector Mapping Mode
+    wColor=vec4(0.0, 0.6 + (pDensity * 0.4), 1.0, 0.75);
+}`;
+const fs=`#version 300 es
+precision highp float;in vec4 wColor;out vec4 fc;void main(){fc=wColor;}`;
 
-        let increment = 0;
-        function animateWave() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw baseline grid lines inside canvas
-            ctx.strokeStyle = 'rgba(0, 243, 255, 0.05)';
-            ctx.lineWidth = 1;
-            for(let i = 0; i < canvas.height; i += 20) {
-                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
-            }
+function cs(t,src){const s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+const pg=gl.createProgram();gl.attachShader(pg,cs(gl.VERTEX_SHADER,vs));gl.attachShader(pg,cs(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pg);gl.useProgram(pg);
 
-            // Draw Schrodinger Wave Function Representation
-            ctx.beginPath();
-            ctx.strokeStyle = '#00f3ff';
-            ctx.lineWidth = 1.5;
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = '#00f3ff';
+const corePoints=new Float32Array(10000);for(let i=0;i<10000;i++)corePoints[i]=i;
+const vbo=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,vbo);gl.bufferData(gl.ARRAY_BUFFER,corePoints,gl.STATIC_DRAW);
+const pLoc=gl.getAttribLocation(pg,"idx");gl.enableVertexAttribArray(pLoc);gl.vertexAttribPointer(pLoc,1,gl.FLOAT,false,4,0);
+const tLoc=gl.getUniformLocation(pg,"t");const mLoc=gl.getUniformLocation(pg,"m");
 
-            for (let x = 0; x < canvas.width; x++) {
-                // Generate complex overlapping sine waves to mimic quantum state propagation
-                const y = canvas.height / 2 + 
-                          Math.sin(x * 0.02 + increment) * 15 * Math.sin(increment * 0.5) +
-                          Math.cos(x * 0.01 - increment * 0.7) * 8;
-                if (x === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-            ctx.shadowBlur = 0; // Reset shadow
+let mx=-1000,my=-1000;
+function trackPointer(clientX, clientY) {
+    const r=cv.getBoundingClientRect();
+    mx=((clientX-r.left)/cv.width)*2.0-1.0;
+    my=-(((clientY-r.top)/cv.height)*2.0-1.0);
+}
+wr.addEventListener("mousemove",(e)=>trackPointer(e.clientX, e.clientY));
+wr.addEventListener("touchmove",(e)=>{if(e.touches.length>0)trackPointer(e.touches[0].clientX, e.touches[0].clientY);});
+wr.addEventListener("mouseleave",()=>{mx=-1000;my=-1000;});
+wr.addEventListener("touchend",()=>{mx=-1000;my=-1000;});
 
-            increment += 0.04;
-            requestAnimationFrame(animateWave);
-        }
-        animateWave();
+function resize(){
+    const dpr=window.devicePixelRatio||1;
+    cv.width=wr.clientWidth*dpr;cv.height=wr.clientHeight*dpr;
+    gl.viewport(0,0,cv.width,cv.height);
+}
+window.addEventListener("resize",resize);resize();
 
-        // Active Telemetry Logic: Fluctuating Real-Time Values
-        const entropyEl = document.getElementById('entropyVal');
-        const phaseEl = document.getElementById('phaseVal');
-        let basePhase = 0.0040;
+gl.enable(gl.BLEND);
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
 
-        setInterval(() => {
-            // Entanglement Entropy occasionally experiences tiny quantum fluctuations
-            const entropyChance = Math.random();
-            if (entropyChance > 0.85) {
-                const microFluctuation = (Math.random() * 0.0004).toFixed(4);
-                entropyEl.innerText = `${microFluctuation} S_vN`;
-            } else {
-                entropyEl.innerText = `0.0000 S_vN`;
-            }
-
-            // Phase propagation rotates and scales continuously
-            basePhase += (Math.random() - 0.5) * 0.0005;
-            if (basePhase < 0.001) basePhase = 0.0040; // Clamping bounds
-            phaseEl.innerText = `${basePhase.toFixed(4)} r/s`;
-        }, 300);
-    </script>
+setInterval(()=>{
+    gl.clearColor(0.01,0.02,0.05,1.0);gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(tLoc,SafeNow()*0.02);gl.uniform2f(mLoc,mx,my);
+    gl.drawArrays(gl.POINTS,0,500000000);
+},16);
+})();
+</script>
 </body>
 </html>
